@@ -3,7 +3,7 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <ul class="nav">
-{{--            @if(auth()->user()->role=='2')--}}
+            @if(auth()->user()->role!=='1')
             <li @if ($pageSlug == 'dashboard') class="active " @endif>
                 <a href="{{ route('home') }}">
                     <i class="tim-icons icon-chart-bar-32"></i>
@@ -66,7 +66,7 @@
             </li>
 
 
-{{--            @if(auth()->user()->role=='2')--}}
+
             <li>
                 <a data-toggle="collapse" href="#inventory" {{ $section == 'inventory' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-app"></i>
@@ -76,6 +76,7 @@
 
                 <div class="collapse {{ $section == 'inventory' ? 'show' : '' }}" id="inventory">
                     <ul class="nav pl-4">
+                        @if(auth()->user()->role=='2')
                         <li @if ($pageSlug == 'istats') class="active " @endif>
                             <a href="{{ route('inventory.stats') }}">
                                 <i class="tim-icons icon-chart-pie-36"></i>
@@ -94,6 +95,7 @@
                                 <p>Danh mục</p>
                             </a>
                         </li>
+                        @endif
                         <li @if ($pageSlug == 'receipts') class="active " @endif>
                             <a href="{{ route('receipts.index') }}">
                                 <i class="tim-icons icon-paper"></i>
@@ -103,7 +105,7 @@
                     </ul>
                 </div>
             </li>
-
+            @if(auth()->user()->role=='2')
             <li @if ($pageSlug == 'clients') class="active " @endif>
                 <a href="{{ route('clients.index') }}">
                     <i class="tim-icons icon-single-02"></i>
@@ -124,8 +126,10 @@
                     <p>Phương thức thanh toán</p>
                 </a>
             </li>
+            @endif
 
 
+            @endif
             <!-- <li>
                 <a data-toggle="collapse" href="#clients">
                     <i class="tim-icons icon-single-02" ></i>

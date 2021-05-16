@@ -15,7 +15,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="card-body">
                         <form method="post" action="{{ route('users.update', $user) }}" autocomplete="off">
                             @csrf
@@ -33,6 +33,19 @@
                                     <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', $user->email) }}" required>
                                     @include('alerts.feedback', ['field' => 'email'])
                                 </div>
+
+                                <div class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-role">{{ __('Role') }}</label>
+                                    <select name="role" id="input-role" class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}"  >
+
+                                        <option value="{{$user['role']='1'}}" selected>{{ __('Admin') }}</option>
+                                        <option value="{{$user['role']='2'}}">{{ __('Manager') }}</option>
+                                        <option value="{{$user['role']='3'}}">{{ __('Staff') }}</option>
+
+                                    </select>
+                                    @include('alerts.feedback', ['field' => 'role'])
+                                </div>
+
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-password">{{ __('Password') }}</label>
                                     <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" value="">

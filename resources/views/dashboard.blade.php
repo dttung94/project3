@@ -50,7 +50,7 @@
         <div class="col-lg-4">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-category">Last Month Income</h5>
+                    <h5 class="card-category">Doanh thu tháng trước</h5>
                     <h3 class="card-title"><i class="tim-icons icon-money-coins text-primary"></i>{{ format_money($semesterincomes) }}</h3>
                 </div>
                 <div class="card-body">
@@ -63,7 +63,7 @@
         <div class="col-lg-4">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-category">Monthly Balance</h5>
+                    <h5 class="card-category">Số dư hàng tháng</h5>
                     <h3 class="card-title"><i class="tim-icons icon-bank text-info"></i> {{ format_money($monthlybalance) }}</h3>
                 </div>
                 <div class="card-body">
@@ -76,7 +76,7 @@
         <div class="col-lg-4">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-category">Expenditures Last Month</h5>
+                    <h5 class="card-category">Chi trả hàng tháng</h5>
                     <h3 class="card-title"><i class="tim-icons icon-paper text-success"></i> {{ format_money($semesterexpenses) }}</h3>
                 </div>
                 <div class="card-body">

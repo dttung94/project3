@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'List of Categories', 'pageSlug' => 'categories', 'section' => 'inventory'])
+@extends('layouts.app', ['page' => 'Danh sách danh mục', 'pageSlug' => 'categories', 'section' => 'inventory'])
 
 @section('content')
     <div class="row">
@@ -20,8 +20,8 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th scope="col">Name</th>
-                                <th scope="col">products</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Sản phẩm</th>
                                 <th scope="col">Total Stock</th>
                                 <th scope="col">Defective Stock</th>
                                 <th scope="col">Average Price of Product</th>
