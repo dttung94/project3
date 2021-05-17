@@ -60,9 +60,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::match(['put', 'patch'], 'profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
-Route::group(['middleware' => 'auth'], function () {
+/*Route::group(['middleware' => 'auth'], function () {
     Route::get('icons', ['as' => 'pages.icons', 'uses' => 'PageController@icons']);
     Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'PageController@notifications']);
     Route::get('tables', ['as' => 'pages.tables', 'uses' => 'PageController@tables']);
     Route::get('typography', ['as' => 'pages.typography', 'uses' => 'PageController@typography']);
-});
+});*/

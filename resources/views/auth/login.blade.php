@@ -29,14 +29,15 @@
                         <input type="password" placeholder="Clave" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}">
                         @include('alerts.feedback', ['field' => 'password'])
                     </div>
+
                 </div>
                 <div class="card-footer">
                     <button type="submit" href="" class="btn btn-primary btn-lg btn-block mb-3">Log in</button>
-                    <div class="pull-left">
+                    {{--<div class="pull-left">
                         <h6>
                             <a href="{{ route('register') }}" class="link footer-link">Create Account</a>
                         </h6>
-                    </div>
+                    </div>--}}
                      <div class="pull-right">
                         <h6>
                             <a href="{{ route('password.request') }}" class="link footer-link">I forgot the password</a>

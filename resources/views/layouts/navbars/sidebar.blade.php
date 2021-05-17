@@ -3,7 +3,7 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <ul class="nav">
-            @if(auth()->user()->role!=='1')
+            @if(auth()->user()->role!='1')
             <li @if ($pageSlug == 'dashboard') class="active " @endif>
                 <a href="{{ route('home') }}">
                     <i class="tim-icons icon-chart-bar-32"></i>
@@ -130,30 +130,8 @@
 
 
             @endif
-            <!-- <li>
-                <a data-toggle="collapse" href="#clients">
-                    <i class="tim-icons icon-single-02" ></i>
-                    <span class="nav-link-text">Clients</span>
-                    <b class="caret mt-1"></b>
-                </a>
 
-                <div class="collapse" id="clients">
-                    <ul class="nav pl-4">
-                        <li @if ($pageSlug == 'clients-list') class="active " @endif>
-                            <a href="{{ route('clients.index')  }}">
-                                <i class="tim-icons icon-notes"></i>
-                                <p>Administrar Clients</p>
-                            </a>
-                        </li>
-                        <li @if ($pageSlug == 'clients-create') class="active " @endif>
-                            <a href="{{ route('clients.create')  }}">
-                                <i class="tim-icons icon-simple-add"></i>
-                                <p>New Client</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li> -->
+
 
             @if(auth()->user()->role=='1')
             <li>
