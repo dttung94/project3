@@ -9,11 +9,6 @@
                         <div class="col-8">
                             <h4 class="card-title">Transactions</h4>
                         </div>
-                        <div class="col-4 text-right">
-                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#transactionModal">
-                                New Transaction
-                            </button>
-                        </div>
                     </div>
                 </div>
                 <div class="card-body">

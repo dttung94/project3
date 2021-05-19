@@ -18,6 +18,9 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
+/*Route::get('/', 'HomeController@index')->name('manager')->middleware('checkManager');
+Route::get('/','TransactionController@stats')->name('staff')->middleware('checkStaff');
+Route::get('/','UserController@index')->name('admin')->middleware('checkAdmin');*/
 Route::group(['middleware' => 'auth'], function () {
 
     Route::resources([

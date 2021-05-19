@@ -22,31 +22,31 @@
                         <li @if ($pageSlug == 'tstats') class="active " @endif>
                             <a href="{{ route('transactions.stats')  }}">
                                 <i class="tim-icons icon-chart-pie-36"></i>
-                                <p>Bản thống kê</p>
+                                <p>Bảng thống kê</p>
                             </a>
                         </li>
                         <li @if ($pageSlug == 'transactions') class="active " @endif>
                             <a href="{{ route('transactions.index')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>Giao dịch</p>
+                                <p>Danh sách giao dịch</p>
                             </a>
                         </li>
                         <li @if ($pageSlug == 'sales') class="active " @endif>
                             <a href="{{ route('sales.index')  }}">
                                 <i class="tim-icons icon-bag-16"></i>
-                                <p>Bán ra</p>
+                                <p>Đơn bán</p>
                             </a>
                         </li>
                         <li @if ($pageSlug == 'expenses') class="active " @endif>
                             <a href="{{ route('transactions.type', ['type' => 'expense'])  }}">
                                 <i class="tim-icons icon-coins"></i>
-                                <p>Expenses</p>
+                                <p>Chi phí bỏ ra</p>
                             </a>
                         </li>
                         <li @if ($pageSlug == 'incomes') class="active " @endif>
                             <a href="{{ route('transactions.type', ['type' => 'income'])  }}">
                                 <i class="tim-icons icon-credit-card"></i>
-                                <p>Income</p>
+                                <p>Tiền thu vào</p>
                             </a>
                         </li>
                         <li @if ($pageSlug == 'transfers') class="active " @endif>

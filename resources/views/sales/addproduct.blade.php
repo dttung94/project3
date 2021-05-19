@@ -25,9 +25,9 @@
                                     <select name="product_id" id="input-product" class="form-select form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" required>
                                         @foreach ($products as $product)
                                             @if($product['id'] == old('product_id'))
-                                                <option value="{{$product['id']}}" selected>[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ $product->price }}$</option>
+                                                <option value="{{$product['id']}}" selected>[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ format_money($product->price) }}</option>
                                             @else
-                                                <option value="{{$product['id']}}">[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ $product->price }}$</option>
+                                                <option value="{{$product['id']}}">[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ format_money($product->price) }}</option>
                                             @endif
                                         @endforeach
                                     </select>
@@ -48,7 +48,7 @@
 
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-total">Total Amount</label>
-                                    <input type="text" name="total_amount" id="input-total" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="0$" disabled>
+                                    <input type="text" name="total_amount" id="input-total" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="0VNĐ" disabled>
                                     @include('alerts.feedback', ['field' => 'product_id'])
                                 </div>
 

@@ -15,3 +15,4 @@ function format_money($money)
 
     return "$money VNĐ";
 }
+

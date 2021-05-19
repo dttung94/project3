@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Closure;
 use Illuminate\Http\Request;
-class CheckAdmin extends Middleware
+class CheckAccountingStaff extends Middleware
 {
 
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check() && Auth::user()->role == '4') {
+        if (Auth::guard($guard)->check() && Auth::user()->role == '3') {
             return $next($request);
         }
 

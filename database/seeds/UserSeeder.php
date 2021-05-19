@@ -41,17 +41,18 @@ class UserSeeder extends Seeder
                 'id' => 3,
                 'email' => 'staff1@gmail.com',
                 'name' => 'staff1',
-                'role'=>'3',
+                'role'=>'4',
                 'password'=>Hash::make('12345678'),
                 'created_at' => $faker->datetimeBetween('-5 months'),
 
             ]
         );
 
+
         $user = DB::table('users')->insert([
                 'id' => 4,
-                'email' => 'staff2@gmail.com',
-                'name' => 'staff2',
+                'email' => 'lghp1998@gmail.com',
+                'name' => 'AccountingStaff',
                 'role'=>'3',
                 'password'=>Hash::make('12345678'),
                 'created_at' => $faker->datetimeBetween('-5 months'),

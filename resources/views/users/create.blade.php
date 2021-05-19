@@ -38,7 +38,8 @@
 
                                         <option value="1" >{{ __('Admin') }}</option>
                                         <option value="2">{{ __('Manager') }}</option>
-                                        <option value="3">{{ __('Staff') }}</option>
+                                        <option value="3">{{ __('Accounting Staff') }}</option>
+                                        <option value="4">{{ __('Staff') }}</option>
 
 
 

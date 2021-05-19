@@ -36,7 +36,7 @@ class TransactionController extends Controller
     {
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SATURDAY);
-        
+
         $salesperiods = [];
         $transactionsperiods = [];
 
@@ -177,7 +177,7 @@ class TransactionController extends Controller
         }
     }
 
-    /** 
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -221,8 +221,9 @@ class TransactionController extends Controller
         switch ($request->get('type')) {
             case 'expense':
                 if ($request->get('amount') > 0) {
-                    $request->merge(['amount' => ((float) $request->get('amount') * (-1))]);
+                    $request->merge(['amount' => ((float) $request->get('amount')* (-1))]);
                 }
+
                 return redirect()
                     ->route('transactions.type', ['type' => 'expense'])
                     ->withStatus('Expense updated sucessfully.');
