@@ -1,6 +1,7 @@
 @extends('layouts.app', ['pageSlug' => 'Bảng thống kê', 'page' => 'Bảng thống kê', 'section' => ''])
 
 @section('content')
+    @if(auth()->user()->role=='2' || auth()->user()->role=='3')
     <div class="row">
         <div class="col-12">
             <div class="card card-chart">
@@ -14,21 +15,21 @@
                             <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                             <label class="btn btn-sm btn-primary btn-simple active" id="0">
                                 <input type="radio" name="options" checked>
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Products</span>
+                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Tổng số sản phẩm</span>
                                 <span class="d-block d-sm-none">
                                     <i class="tim-icons icon-single-02"></i>
                                 </span>
                             </label>
                             <label class="btn btn-sm btn-primary btn-simple" id="1">
                                 <input type="radio" class="d-none d-sm-none" name="options">
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Purchases</span>
+                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Tổng số đơn hàng</span>
                                 <span class="d-block d-sm-none">
                                     <i class="tim-icons icon-gift-2"></i>
                                 </span>
                             </label>
                             <label class="btn btn-sm btn-primary btn-simple" id="2">
                                 <input type="radio" class="d-none" name="options">
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Clients</span>
+                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Khách hàng</span>
                                 <span class="d-block d-sm-none">
                                     <i class="tim-icons icon-tap-02"></i>
                                 </span>
@@ -94,13 +95,13 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Pending Sales</h4>
+                            <h4 class="card-title">Đơn hàng đang xử lý</h4>
                         </div>
-
+                        @if(auth()->user()->role=='3')
                         <div class="col-4 text-right">
-                            <a href="{{ route('sales.create') }}" class="btn btn-sm btn-primary">New Sale</a>
+                            <a href="{{ route('sales.create') }}" class="btn btn-sm btn-primary">Thêm đơn hàng</a>
                         </div>
-
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -109,19 +110,19 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        Date
+                                        Ngày
                                     </th>
                                     <th>
-                                        Client
+                                        Khách hàng
                                     </th>
                                     <th>
-                                        Products
+                                        Sản phẩm
                                     </th>
                                     <th>
-                                        Paid out
+                                        Đã thanh toán
                                     </th>
                                     <th>
-                                        Total
+                                        Tổng
                                     </th>
                                     <th>
 
@@ -154,14 +155,14 @@
                 <div class="card-header">
                 <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Latest Transactions</h4>
+                            <h4 class="card-title">Các giao dịch cuối cùng</h4>
                         </div>
 
-                        <div class="col-4 text-right">
+                        {{--<div class="col-4 text-right">
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#transactionModal">
                                 New Transaction
                             </button>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
                 <div class="card-body">
@@ -170,16 +171,16 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        Category
+                                        Loại
                                     </th>
                                     <th>
-                                        Title
+                                        Tiêu đề
                                     </th>
                                     <th>
-                                        Medium
+                                        Phương thức
                                     </th>
                                     <th>
-                                        Total
+                                        Tổng
                                     </th>
                                     <th>
 
@@ -192,13 +193,13 @@
                                     <tr>
                                         <td>
                                             @if($transaction->type == 'expense')
-                                                Expense
+                                                Chi phí bỏ ra
                                             @elseif($transaction->type == 'sale')
-                                                Sale
+                                                Đơn bán
                                             @elseif($transaction->type == 'payment')
-                                                Payment
+                                                Thanh toán hàng nhận về
                                             @elseif($transaction->type == 'income')
-                                                Income
+                                                Tiền thu vào
                                             @else
                                                 {{ $transaction->type }}
                                             @endif
@@ -245,6 +246,7 @@
             </div>
         </div>
     </div>
+    @endif
 @endsection
 
 @push('js')
@@ -274,4 +276,5 @@
             demo.initDashboardPageCharts();
         });
     </script>
+
 @endpush

@@ -23,7 +23,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    @if (auth()->user()->role=='manager')
+                                    @if (auth()->user()->role=='2')
                                     <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: At the end of this receipt you will not be able to load more products in it.') ? window.location.replace('{{ route('receipts.finalize', $receipt) }}') : ''">
                                         Finalize Receipt
                                     </button>

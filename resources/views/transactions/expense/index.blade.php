@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Expenses', 'pageSlug' => 'expenses', 'section' => 'transactions'])
+@extends('layouts.app', ['page' => 'Chi phí bỏ ra', 'pageSlug' => 'expenses', 'section' => 'transactions'])
 
 @section('content')
     <div class="row">
@@ -7,10 +7,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Expenses</h4>
+                            <h4 class="card-title">Chi phí bỏ ra</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('transactions.create', ['type' => 'expense']) }}" class="btn btn-sm btn-primary">Register Expense</a>
+                            <a href="{{ route('transactions.create', ['type' => 'expense']) }}" class="btn btn-sm btn-primary">Thêm chi phí</a>
                         </div>
                     </div>
                 </div>
@@ -20,11 +20,11 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th scope="col">Date</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Method</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Reference</th>
+                                <th scope="col">Ngày</th>
+                                <th scope="col">Tiêu đề</th>
+                                <th scope="col">Phương thức thanh toán</th>
+                                <th scope="col">Số tiền</th>
+                                <th scope="col">Liên hệ</th>
                                 <th scope="col"></th>
                             </thead>
                             <tbody>

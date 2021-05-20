@@ -125,7 +125,7 @@ class TransactionController extends Controller
                     $request->merge(['title' => 'Customer ID Return Payment: ' . $request->get('client_id')]);
 
                     if ($request->get('amount') > 0) {
-                        $request->merge(['amount' => (float) $request->get('amount') * (-1)]);
+                        $request->merge(['amount' =>  ((float) $request->get('amount') * (-1))]);
                     }
                     break;
             }
@@ -216,14 +216,14 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        $transaction->update($request->all());
+
 
         switch ($request->get('type')) {
             case 'expense':
                 if ($request->get('amount') > 0) {
-                    $request->merge(['amount' => ((float) $request->get('amount')* (-1))]);
+                    $request->merge(['amount' => ((float) $request->get('amount'))*(-1)]);
                 }
-
+                $transaction->update($request->all());
                 return redirect()
                     ->route('transactions.type', ['type' => 'expense'])
                     ->withStatus('Expense updated sucessfully.');

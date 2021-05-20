@@ -10,9 +10,10 @@ function format_money($money)
 
     if(strpos($money, '-') !== false) {
         $formatted = explode('-', $money);
-        return "-\$$formatted[1]";
+        return "-$formatted[1] VND";
     }
 
     return "$money VNĐ";
 }
+
 

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Manage Sale', 'pageSlug' => 'sales', 'section' => 'transactions'])
+@extends('layouts.app', ['page' => 'Quản lí đơn hàng', 'pageSlug' => 'sales', 'section' => 'transactions'])
 
 @section('content')
     @include('alerts.success')
@@ -9,8 +9,9 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Sale Summary</h4>
+                            <h4 class="card-title">Đơn hàng</h4>
                         </div>
+                        @if(auth()->user()->role=='3')
                         @if (!$sale->finalized_at)
                             <div class="col-4 text-right">
                                 @if ($sale->products->count() == 0)
@@ -28,7 +29,9 @@
                                 @endif
                             </div>
                         @endif
+                        @endif
                     </div>
+
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -68,10 +71,12 @@
                         <div class="col-8">
                             <h4 class="card-title">products: {{ $sale->products->sum('qty') }}</h4>
                         </div>
+                        @if(auth()->user()->role=='3')
                         @if (!$sale->finalized_at)
                             <div class="col-4 text-right">
                                 <a href="{{ route('sales.product.add', ['sale' => $sale->id]) }}" class="btn btn-sm btn-primary">Add</a>
                             </div>
+                        @endif
                         @endif
                     </div>
                 </div>
@@ -95,6 +100,7 @@
                                     <td>{{ $sold_product->qty }}</td>
                                     <td>{{ format_money($sold_product->price) }}</td>
                                     <td>{{ format_money($sold_product->total_amount) }}</td>
+                                    @if(auth()->user()->role=='3')
                                     <td class="td-actions text-right">
                                         @if(!$sale->finalized_at)
                                             <a href="{{ route('sales.product.edit', ['sale' => $sale, 'soldproduct' => $sold_product]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Pedido">
@@ -109,6 +115,7 @@
                                             </form>
                                         @endif
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

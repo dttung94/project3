@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Transactions', 'pageSlug' => 'transactions', 'section' => 'transactions'])
+@extends('layouts.app', ['page' => 'Danh sách giao dịch', 'pageSlug' => 'transactions', 'section' => 'transactions'])
 
 @section('content')
     <div class="row">
@@ -7,7 +7,7 @@
                 <div class="card-header">
                 <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Transactions</h4>
+                            <h4 class="card-title">Danh sách giao dịch</h4>
                         </div>
                     </div>
                 </div>
@@ -17,15 +17,15 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th>Date</th>
-                                <th>Type</th>
-                                <th>Title</th>
-                                <th>Method</th>
-                                <th>Amount</th>
-                                <th>Reference</th>
-                                <th>Client</th>
-                                <th>Provider</th>
-                                <th>Transfer</th>
+                                <th>Ngày</th>
+                                <th>Loại</th>
+                                <th>Tiêu đề</th>
+                                <th>Phương thức</th>
+                                <th>Số tiền</th>
+                                <th>Liên quan</th>
+                                <th>Khách hàng</th>
+                                <th>Nhà cung cấp</th>
+{{--                                <th>Transfer</th>--}}
                                 <th></th>
                             </thead>
                             <tbody>
@@ -53,13 +53,13 @@
                                                 Does not apply
                                             @endif
                                         </td>
-                                        <td>
-                                            @if ($transaction->transfer)
-                                                <a href="{{ route('transfer.show', $transaction->transfer) }}">ID {{ $transaction->transfer->id }}</a>
-                                            @else
-                                                Does not apply
-                                            @endif
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            @if ($transaction->transfer)--}}
+{{--                                                <a href="{{ route('transfer.show', $transaction->transfer) }}">ID {{ $transaction->transfer->id }}</a>--}}
+{{--                                            @else--}}
+{{--                                                Does not apply--}}
+{{--                                            @endif--}}
+{{--                                        </td>--}}
                                         <td class="td-actions text-right">
                                             @if ($transaction->sale_id)
                                                 <a href="{{ route('sales.show', $transaction->sale) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More details">

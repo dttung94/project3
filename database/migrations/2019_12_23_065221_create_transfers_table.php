@@ -18,8 +18,8 @@ class CreateTransfersTable extends Migration
             $table->string('title')->nullable();
             $table->unsignedBigInteger('sender_method_id');
             $table->unsignedBigInteger('receiver_method_id');
-            $table->decimal('sended_amount', 10, 2);
-            $table->decimal('received_amount', 10, 2);
+            $table->decimal('sended_amount', 18, 0);
+            $table->decimal('received_amount', 18, 0);
             $table->string('reference')->nullable();
             $table->timestamps();
             $table->foreign('sender_method_id')->references('id')->on('payment_methods');

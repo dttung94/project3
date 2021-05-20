@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Clients', 'pageSlug' => 'clients', 'section' => 'clients'])
+@extends('layouts.app', ['page' => 'Khách hàng', 'pageSlug' => 'clients', 'section' => 'clients'])
 
 @section('content')
     <div class="row">
@@ -7,11 +7,13 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Clients</h4>
+                            <h4 class="card-title">Danh sách khách hàng</h4>
                         </div>
+                        @if(auth()->user()->role=='2')
                         <div class="col-4 text-right">
-                            <a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary">Add Client</a>
+                            <a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary">Thêm khách hàng</a>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -20,12 +22,12 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th>Name</th>
-                                <th>Email / Telephone</th>
-                                <th>Balance</th>
-                                <th>Purchases</th>
-                                <th>Total Payment</th>
-                                <th>Last purchase</th>
+                                <th>Họ tên</th>
+                                <th>Thông tin liên lạc</th>
+                                <th>Ví</th>
+                                <th>Số hàng đã mua</th>
+                                <th>Tổng tiền thanh toán</th>
+                                <th>Lần mua hàng cuối</th>
                                 <th></th>
                             </thead>
                             <tbody>
@@ -50,9 +52,12 @@
                                         <td>{{ format_money($client->transactions->sum('amount')) }}</td>
                                         <td>{{ ($client->sales->sortByDesc('created_at')->first()) ? date('d-m-y', strtotime($client->sales->sortByDesc('created_at')->first()->created_at)) : 'N/A' }}</td>
                                         <td class="td-actions text-right">
+                                            @if(auth()->user()->role=='2' || auth()->user()->role=='3')
                                             <a href="{{ route('clients.show', $client) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
                                                 <i class="tim-icons icon-zoom-split"></i>
                                             </a>
+                                            @endif
+                                            @if (auth()->user()->role=='2')
                                             <a href="{{ route('clients.edit', $client) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Client">
                                                 <i class="tim-icons icon-pencil"></i>
                                             </a>
@@ -63,6 +68,7 @@
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>
+                                                @endif
                                         </td>
                                     </tr>
                                 @endforeach

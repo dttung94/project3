@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Sales', 'pageSlug' => 'sales', 'section' => 'transactions'])
+@extends('layouts.app', ['page' => 'Đơn bán', 'pageSlug' => 'sales', 'section' => 'transactions'])
 
 @section('content')
     @include('alerts.success')
@@ -8,10 +8,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Sales</h4>
+                            <h4 class="card-title">Đơn bán</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('sales.create') }}" class="btn btn-sm btn-primary">Register Sale</a>
+                            <a href="{{ route('sales.create') }}" class="btn btn-sm btn-primary">Thêm</a>
                         </div>
                     </div>
                 </div>
@@ -19,12 +19,12 @@
                     <div class="">
                         <table class="table">
                             <thead>
-                                <th>Date</th>
-                                <th>Client</th>
-                                <th>User</th>
-                                <th>Products</th>
-                                <th>Total Stock</th>
-                                <th>Total Amount</th>
+                                <th>Ngày</th>
+                                <th>Khách khàng</th>
+                                <th>Người xử lý</th>
+                                <th>Số loại sản phẩm</th>
+                                <th>Tổng số sản phẩm</th>
+                                <th>Tổng số tiền</th>
                                 <th>Status</th>
                                 <th></th>
                             </thead>
@@ -45,15 +45,19 @@
                                             @endif
                                         </td>
                                         <td class="td-actions text-right">
+
                                             @if (!$sale->finalized_at)
+                                                @if(auth()->user()->role=='3')
                                                 <a href="{{ route('sales.show', ['sale' => $sale]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Sale">
                                                     <i class="tim-icons icon-pencil"></i>
                                                 </a>
+                                                @endif
                                             @else
                                                 <a href="{{ route('sales.show', ['sale' => $sale]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="View Sale">
                                                     <i class="tim-icons icon-zoom-split"></i>
                                                 </a>
                                             @endif
+                                            @if(auth()->user()->role=='3')
                                             <form action="{{ route('sales.destroy', $sale) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
@@ -61,6 +65,7 @@
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>
+                                                @endif
                                         </td>
                                     </tr>
                                 @endforeach

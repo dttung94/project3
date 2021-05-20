@@ -14,7 +14,7 @@ class AddBalanceColumnClientsTable extends Migration
     public function up()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->decimal('balance')->default(0.00);
+            $table->decimal('balance',18,0)->default(0);
         });
     }
 

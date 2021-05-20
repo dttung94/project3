@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('User Management'), 'pageSlug' => 'users', 'section' => 'users'])
+@extends('layouts.app', ['page' => __('Quản lý User'), 'pageSlug' => 'users', 'section' => 'users'])
 
 @section('content')
     <div class="row">
@@ -10,7 +10,7 @@
                             <h4 class="card-title">{{ __('Users') }}</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
+                            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">{{ __('Thêm user') }}</a>
                         </div>
                     </div>
                 </div>
@@ -20,10 +20,10 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th scope="col">{{ __('Name') }}</th>
+                                <th scope="col">{{ __('Họ tên') }}</th>
                                 <th scope="col">{{ __('Email') }}</th>
-                                <th scope="col">{{ __('Creation Date') }}</th>
-                                <th scope="col">{{ __('Role') }}</th>
+                                <th scope="col">{{ __('Ngày khởi tạo') }}</th>
+                                <th scope="col">{{ __('Quyền') }}</th>
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
@@ -38,6 +38,8 @@
                                         @elseif($user->role=='2')
                                             <td>{{__('Manager')}}</td>
                                         @elseif($user->role=='3')
+                                            <td>{{__('Accounting Staff')}}</td>
+                                        @elseif($user->role=='4')
                                             <td>{{__('Staff')}}</td>
                                         @endif
                                         <td class="text-right">

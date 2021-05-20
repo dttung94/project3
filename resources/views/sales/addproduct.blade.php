@@ -76,7 +76,7 @@
         input_qty.addEventListener('input', updateTotal);
         input_price.addEventListener('input', updateTotal);
         function updateTotal () {
-            input_total.value = (parseInt(input_qty.value) * parseFloat(input_price.value))+"$";
+            input_total.value = (parseInt(input_qty.value) * parseFloat(input_price.value))+"VNĐ";
         }
     </script>
 @endpush
