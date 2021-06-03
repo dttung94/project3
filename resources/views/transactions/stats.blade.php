@@ -1,4 +1,4 @@
-@extends('layouts.app', ['pageSlug' => 'tstats', 'page' => 'Statistics', 'section' => 'transactions'])
+@extends('layouts.app', ['pageSlug' => 'tstats', 'page' => 'Thống Kê', 'section' => 'transactions'])
 
 @section('content')
     <div class="row">
@@ -7,11 +7,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Transaction Statistics</h4>
+                            <h4 class="card-title">Thống kê giao dịch</h4>
                         </div>
                         <div class="col-4 text-right">
                             <a href="{{ route('transactions.index') }}" class="btn btn-sm btn-primary">
-                                View Transactions
+                                Danh sách giao dịch
                             </a>
                         </div>
                     </div>
@@ -19,13 +19,13 @@
                 <div class="card-body">
                         <table class="table">
                             <thead>
-                                <th>Period</th>
-                                <th>Transactions</th>
-                                <th>Income</th>
-                                <th>Expenses</th>
-                                <th>Payments</th>
-                                <th>Cash Balance</th>
-                                <th>Total balance</th>
+                                <th>Định kỳ</th>
+                                <th>Số giao dịch</th>
+                                <th>Thu</th>
+                                <th>Chi</th>
+                                <th>Thanh toán</th>
+                                <th>Ví tiền mặt</th>
+                                <th>Tổng</th>
                                 <th></th>
                             </thead>
                             <tbody>
@@ -54,10 +54,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Pending Balances</h4>
+                            <h4 class="card-title">Ví dư cần xử lý</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('clients.index') }}" class="btn btn-sm btn-primary">View Clients</a>
+                            <a href="{{ route('clients.index') }}" class="btn btn-sm btn-primary">Khách hàng</a>
                         </div>
                     </div>
                 </div>
@@ -65,10 +65,10 @@
                     <div class="table-full-width table-responsive">
                         <table class="table">
                             <thead>
-                                <th>Client</th>
-                                <th>Purchases</th>
-                                <th>Transactions</th>
-                                <th>Balance</th>
+                                <th>Khách hàng</th>
+                                <th>Mua hàng</th>
+                                <th>Giao dịch</th>
+                                <th>Ví</th>
                                 <th></th>
                             </thead>
                             <tbody>
@@ -108,28 +108,30 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Statistics by Methods</h4>
+                            <h4 class="card-title">Thống kê theo PTTT</h4>
                         </div>
+                        @if (auth()->user()->role==2)
                         <div class="col-4 text-right">
-                            <a href="{{ route('methods.index') }}" class="btn btn-sm btn-primary">View Methods</a>
+                            <a href="{{ route('methods.index') }}" class="btn btn-sm btn-primary">PTTT</a>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="table-full-width table-responsive">
                         <table class="table">
                             <thead>
-                                <th>Method</th>
-                                <th>Transactions {{ $date->year }}</th>
-                                <th>Balance {{ $date->year }}</th>
+                                <th>Phương thức</th>
+                                <th>Giao dịch {{ $date->year }}</th>
+                                <th>Ví {{ $date->year }}</th>
                                 <th></th>
                             </thead>
                             <tbody>
                                 @foreach($methods as $method)
                                     <tr>
                                         <td><a href="{{ route('methods.show', $method) }}">{{ $method->name }}</a></td>
-                                        <td>{{ format_money($transactionsperiods['Year']->where('payment_method_id', $method->id)->count()) }}</td>
-                                        <td>{{ format_money($transactionsperiods['Year']->where('payment_method_id', $method->id)->sum('amount')) }}</td>
+                                        <td>{{ $transactionsperiods['Năm']->where('payment_method_id', $method->id)->count() }}</td>
+                                        <td>{{ format_money($transactionsperiods['Năm']->where('payment_method_id', $method->id)->sum('amount')) }}</td>
                                         <td>
                                             <a href="{{ route('methods.show', $method) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="See Method">
                                                 <i class="tim-icons icon-zoom-split"></i>
@@ -151,10 +153,10 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-8">
-                        <h4 class="card-title">Sales Statistics</h4>
+                        <h4 class="card-title">Thống kê đơn đặt hàng</h4>
                     </div>
                     <div class="col-4 text-right">
-                        <a href="{{ route('sales.index') }}" class="btn btn-sm btn-primary">View Sales</a>
+                        <a href="{{ route('sales.index') }}" class="btn btn-sm btn-primary">Đơn đặt hàng</a>
                     </div>
                 </div>
             </div>

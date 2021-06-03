@@ -38,10 +38,9 @@
                                     <label class="form-control-label" for="input-role">{{ __('Phân quyền') }}</label>
                                     <select name="role" id="input-role" class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}"  >
 
-                                        <option value="{{$user['role']='1'}}" selected>{{ __('Admin') }}</option>
-                                        <option value="{{$user['role']='2'}}">{{ __('Manager') }}</option>
-                                        <option value="{{$user['role']='3'}}">{{ __('Accounting Staff') }}</option>
-                                        <option value="{{$user['role']='4'}}">{{ __('Staff') }}</option>
+                                        <option value="{{$user['role']='1'}}" selected>{{ __('Manager') }}</option>
+                                        <option value="{{$user['role']='2'}}">{{ __('Accounting Staff') }}</option>
+                                        <option value="{{$user['role']='3'}}">{{ __('Staff') }}</option>
 
                                     </select>
                                     @include('alerts.feedback', ['field' => 'role'])

@@ -18,10 +18,33 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $sales = Sale::latest()->paginate(25);
-
+        $search = $request->search;
+        if (empty($search)) {
+            $sales = Sale::latest()->paginate(5);
+        }elseif($search == 'sang') {
+            $sales = Sale::where('client_id', 4)
+                ->paginate(5);
+        }elseif($search == 'xoan') {
+            $sales = Sale::where('client_id', 5)
+                ->paginate(5);
+        }elseif($search == 'vu') {
+            $sales = Sale::where('client_id', 6)
+                ->paginate(5);
+        }elseif($search == 'nam') {
+            $sales = Sale::where('client_id', 1)
+                ->paginate(5);
+        }elseif($search == 'linh') {
+            $sales = Sale::where('client_id', 2)
+                ->paginate(5);
+        }elseif($search == 'hieu') {
+            $sales = Sale::where('client_id', 3)
+                ->paginate(5);
+        }elseif($search == 'staff') {
+            $sales = Sale::where('user_id', 4)
+                ->paginate(5);
+        }
         return view('sales.index', compact('sales'));
 
     }
@@ -49,15 +72,15 @@ class SaleController extends Controller
         $existent = Sale::where('client_id', $request->get('client_id'))->where('finalized_at', null)->get();
 
         if($existent->count()) {
-            return back()->withError('There is already an unfinished sale belonging to this customer. <a href="'.route('sales.show', $existent->first()).'">Click here to go to it</a>');
+            return back()->withError('Đang có đơn đặt hàng chưa hoàn thành của khách hàng này. <a href="'.route('sales.show', $existent->first()).'">Click vào đây để xem chi tiết</a>');
         }
 
         $sale = $model->create($request->all());
-        
         return redirect()
             ->route('sales.show', ['sale' => $sale->id])
             ->withStatus('Sale registered successfully, you can start registering products and transactions.');
     }
+
 
     /**
      * Display the specified resource.
@@ -92,7 +115,7 @@ class SaleController extends Controller
         foreach ($sale->products as $sold_product) {
             $product_name = $sold_product->product->name;
             $product_stock = $sold_product->product->stock;
-            if($sold_product->qty > $product_stock) return back()->withError("The product '$product_name' does not have enough stock. Only has $product_stock units.");
+            if($sold_product->qty > $product_stock) return back()->withError("'$product_name' không đủ hàng trong kho. Only has $product_stock units.");
         }
 
         foreach ($sale->products as $sold_product) {

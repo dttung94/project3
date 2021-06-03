@@ -9,9 +9,9 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Đơn hàng</h4>
+                            <h4 class="card-title">Đơn đặt hàng</h4>
                         </div>
-                        @if(auth()->user()->role=='3')
+                        @if(auth()->user()->role=='2')
                         @if (!$sale->finalized_at)
                             <div class="col-4 text-right">
                                 @if ($sale->products->count() == 0)
@@ -23,7 +23,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: The transactions of this sale do not seem to coincide with the cost of the products, do you want to finalize it? Your records cannot be modified from now on.') ? window.location.replace('{{ route('sales.finalize', $sale) }}') : ''">
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('Bạn muốn chốt đơn hàng này chứ? Bản ghi này sẽ không được sửa đổi') ? window.location.replace('{{ route('sales.finalize', $sale) }}') : ''">
                                         Finalize Sale
                                     </button>
                                 @endif
@@ -37,13 +37,13 @@
                     <table class="table">
                         <thead>
                             <th>ID</th>
-                            <th>Date</th>
-                            <th>User</th>
-                            <th>Client</th>
-                            <th>products</th>
-                            <th>Total Stock</th>
-                            <th>Total Cost</th>
-                            <th>Status</th>
+                            <th>Ngày</th>
+                            <th>Nhân viên</th>
+                            <th>Khách hàng</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Trạng thái</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -69,9 +69,9 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">products: {{ $sale->products->sum('qty') }}</h4>
+                            <h4 class="card-title">Sản phẩm: {{ $sale->products->sum('qty') }}</h4>
                         </div>
-                        @if(auth()->user()->role=='3')
+                        @if(auth()->user()->role=='2')
                         @if (!$sale->finalized_at)
                             <div class="col-4 text-right">
                                 <a href="{{ route('sales.product.add', ['sale' => $sale->id]) }}" class="btn btn-sm btn-primary">Add</a>
@@ -84,11 +84,11 @@
                     <table class="table">
                         <thead>
                             <th>ID</th>
-                            <th>Category</th>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Price C/U</th>
-                            <th>Total</th>
+                            <th>Danh mục</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Tổng</th>
                             <th></th>
                         </thead>
                         <tbody>
@@ -100,7 +100,7 @@
                                     <td>{{ $sold_product->qty }}</td>
                                     <td>{{ format_money($sold_product->price) }}</td>
                                     <td>{{ format_money($sold_product->total_amount) }}</td>
-                                    @if(auth()->user()->role=='3')
+                                    @if(auth()->user()->role=='2')
                                     <td class="td-actions text-right">
                                         @if(!$sale->finalized_at)
                                             <a href="{{ route('sales.product.edit', ['sale' => $sale, 'soldproduct' => $sold_product]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Pedido">

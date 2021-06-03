@@ -56,7 +56,7 @@
                         <div class="col-8">
                             <h4 class="card-title">Thanh toán</h4>
                         </div>
-                        @if(auth()->user()->role=='3')
+                        @if(auth()->user()->role=='2')
                         <div class="col-4 text-right">
                             <a href="{{ route('clients.transactions.add', $client) }}" class="btn btn-sm btn-primary">Thêm thanh toán</a>
                         </div>
@@ -109,9 +109,9 @@
                             <th>ID</th>
                             <th>Ngày</th>
                             <th>Sản phẩm</th>
-                            <th>Stock</th>
-                            <th>Total Amount</th>
-                            <th>State</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Trạng thái</th>
                             <th></th>
                         </thead>
                         <tbody>

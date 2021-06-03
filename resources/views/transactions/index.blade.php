@@ -11,6 +11,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <form action="{{route('transactions.index')}}" method="get">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Tìm kiếm giao dịch..."/>
+                            <button class="au-btn--submit" type="submit">
+                                <i class="tim-icons icon-zoom-split"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="card-body">
                     @include('alerts.success')
 
@@ -21,7 +34,7 @@
                                 <th>Loại</th>
                                 <th>Tiêu đề</th>
                                 <th>Phương thức</th>
-                                <th>Số tiền</th>
+                                <th>Đơn giá</th>
                                 <th>Liên quan</th>
                                 <th>Khách hàng</th>
                                 <th>Nhà cung cấp</th>

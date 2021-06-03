@@ -9,13 +9,26 @@
                         <div class="col-8">
                             <h4 class="card-title">Danh sách khách hàng</h4>
                         </div>
-                        @if(auth()->user()->role=='2')
+                        @if(auth()->user()->role=='1')
                         <div class="col-4 text-right">
                             <a href="{{ route('clients.create') }}" class="btn btn-sm btn-primary">Thêm khách hàng</a>
                         </div>
                         @endif
                     </div>
                 </div>
+
+                <div>
+                    <form action="{{route('clients.index')}}" method="get">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Tìm kiếm khách hàng/email/phone/phân loại..."/>
+                            <button class="au-btn--submit" type="submit">
+                                <i class="tim-icons icon-zoom-split"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="card-body">
                     @include('alerts.success')
 

@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <ul class="nav">
-            @if(auth()->user()->role=='2' || auth()->user()->role=='3' )
+            @if(auth()->user()->role=='1' || auth()->user()->role=='2' )
                 <li @if ($pageSlug == 'dashboard') class="active " @endif>
                     <a href="{{ route('home') }}">
                         <i class="tim-icons icon-chart-bar-32"></i>
@@ -9,7 +9,7 @@
                     </a>
                 </li>
             @endif
-            @if(auth()->user()->role!='1')
+
                 <li>
                     <a data-toggle="collapse"
                        href="#transactions" {{ $section == 'transactions' ? 'aria-expanded=true' : '' }}>
@@ -20,7 +20,7 @@
 
                     <div class="collapse {{ $section == 'transactions' ? 'show' : '' }}" id="transactions">
                         <ul class="nav pl-4">
-                            @if(auth()->user()->role=='2')
+                            @if(auth()->user()->role=='1')
                                 <li @if ($pageSlug == 'tstats') class="active " @endif>
                                     <a href="{{ route('transactions.stats')  }}">
                                         <i class="tim-icons icon-chart-pie-36"></i>
@@ -28,7 +28,7 @@
                                     </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->role=='2' || auth()->user()->role=='3')
+                            @if(auth()->user()->role=='1' || auth()->user()->role=='2')
                                 <li @if ($pageSlug == 'transactions') class="active " @endif>
                                     <a href="{{ route('transactions.index')  }}">
                                         <i class="tim-icons icon-bullet-list-67"></i>
@@ -36,25 +36,25 @@
                                     </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->role=='3' || auth()->user()->role=='4')
+
                                 <li @if ($pageSlug == 'sales') class="active " @endif>
                                     <a href="{{ route('sales.index')  }}">
                                         <i class="tim-icons icon-bag-16"></i>
-                                        <p>Đơn bán</p>
+                                        <p>Đơn đặt hàng</p>
                                     </a>
                                 </li>
-                            @endif
-                            @if(auth()->user()->role=='3')
+
+                            @if(auth()->user()->role=='2')
                                 <li @if ($pageSlug == 'expenses') class="active " @endif>
                                     <a href="{{ route('transactions.type', ['type' => 'expense'])  }}">
                                         <i class="tim-icons icon-coins"></i>
-                                        <p>Chi phí bỏ ra</p>
+                                        <p>Chi</p>
                                     </a>
                                 </li>
                                 <li @if ($pageSlug == 'incomes') class="active " @endif>
                                     <a href="{{ route('transactions.type', ['type' => 'income'])  }}">
                                         <i class="tim-icons icon-credit-card"></i>
-                                        <p>Tiền thu vào</p>
+                                        <p>Thu</p>
                                     </a>
                                 </li>
                                 {{--<li @if ($pageSlug == 'transfers') class="active " @endif>
@@ -74,9 +74,8 @@
                         </ul>
                     </div>
                 </li>
-            @endif
 
-            @if(auth()->user()->role=='2' || auth()->user()->role=='4')
+            @if(auth()->user()->role=='1' || auth()->user()->role=='3')
                 <li>
                     <a data-toggle="collapse"
                        href="#inventory" {{ $section == 'inventory' ? 'aria-expanded=true' : '' }}>
@@ -87,7 +86,7 @@
 
                     <div class="collapse {{ $section == 'inventory' ? 'show' : '' }}" id="inventory">
                         <ul class="nav pl-4">
-                            @if(auth()->user()->role=='2')
+                            @if(auth()->user()->role=='1')
                                 <li @if ($pageSlug == 'istats') class="active " @endif>
                                     <a href="{{ route('inventory.stats') }}">
                                         <i class="tim-icons icon-chart-pie-36"></i>
@@ -106,19 +105,18 @@
                                         <p>Danh mục</p>
                                     </a>
                                 </li>
-                            @elseif(auth()->user()->role=='4')
+                            @endif
                                 <li @if ($pageSlug == 'receipts') class="active " @endif>
                                     <a href="{{ route('receipts.index') }}">
                                         <i class="tim-icons icon-paper"></i>
                                         <p>Nhập vào</p>
                                     </a>
                                 </li>
-                            @endif
                         </ul>
                     </div>
                 </li>
                 @endif
-                @if(auth()->user()->role=='2' || auth()->user()->role=='3')
+                @if(auth()->user()->role=='1' || auth()->user()->role=='2')
                 <li @if ($pageSlug == 'clients') class="active " @endif>
                     <a href="{{ route('clients.index') }}">
                         <i class="tim-icons icon-single-02"></i>
@@ -127,7 +125,7 @@
                 </li>
                 @endif
 
-                @if(auth()->user()->role=='2')
+                @if(auth()->user()->role=='1')
                 <li @if ($pageSlug == 'providers') class="active " @endif>
                     <a href="{{ route('providers.index') }}">
                         <i class="tim-icons icon-delivery-fast"></i>
@@ -136,7 +134,7 @@
                 </li>
                 @endif
 
-                @if(auth()->user()->role=='3')
+                @if(auth()->user()->role=='2')
                 <li @if ($pageSlug == 'methods') class="active " @endif>
                     <a href="{{ route('methods.index') }}">
                         <i class="tim-icons icon-wallet-43"></i>

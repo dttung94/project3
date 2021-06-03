@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Provider;
 use App\Http\Requests\ProviderRequest;
+use Illuminate\Http\Request;
 
 class ProviderController extends Controller
 {
@@ -13,10 +14,17 @@ class ProviderController extends Controller
      * @param  \App\Provider  $model
      * @return \Illuminate\View\View
      */
-    public function index(Provider $model)
+    public function index(Request $request)
     {
-        $providers = Provider::paginate(25);
-
+        $search = $request->search;
+        if (empty($search)) {
+            $providers = Provider::paginate(3);
+        } else {
+            $providers = Provider::where('name', 'like', '%' . $search . '%')
+                ->orwhere('phone', 'like', '%' . $search . '%')
+                ->orwhere('email', 'like', '%' . $search . '%')
+                ->paginate(3);
+        }
         return view('providers.index', compact('providers'));
     }
 
@@ -43,7 +51,7 @@ class ProviderController extends Controller
 
         return redirect()
             ->route('providers.index')
-            ->withStatus('Successfully Registered Vendor.');
+            ->withStatus('Thêm nhà cung cấp thành công');
     }
 
     /**
@@ -86,7 +94,7 @@ class ProviderController extends Controller
 
         return redirect()
             ->route('providers.index')
-            ->withStatus('Provider updated successfully.');
+            ->withStatus('Cập nhật thành công');
     }
 
     /**
@@ -101,6 +109,6 @@ class ProviderController extends Controller
 
         return redirect()
             ->route('providers.index')
-            ->withStatus('Provider removed successfully.');
+            ->withStatus('Xóa thành công');
     }
 }

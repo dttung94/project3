@@ -9,9 +9,11 @@
                         <div class="col-8">
                             <h4 class="card-title">Phí thu vào</h4>
                         </div>
+                        @if (auth()->user()->role == 2)
                         <div class="col-4 text-right">
                             <a href="{{ route('transactions.create', ['type' => 'income']) }}" class="btn btn-sm btn-primary">Thêm phí thu vào</a>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -25,6 +27,7 @@
                                 <th scope="col">Phương thức giao dịch</th>
                                 <th scope="col">Số tiền</th>
                                 <th scope="col">Liên hệ</th>
+
                                 <th scope="col"></th>
                             </thead>
                             <tbody>
@@ -36,6 +39,7 @@
                                         <td>{{ format_money($transaction->amount) }}</td>
                                         <td>{{ $transaction->reference }}</td>
                                         <td></td>
+                                        @if (auth()->user()->role == 2)
                                         <td class="td-actions text-right">
                                             @if ($transaction->sale_id)
                                                 <a href="{{ route('sales.show', $transaction->sale_id) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
@@ -54,6 +58,7 @@
                                                 </form>
                                             @endif
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

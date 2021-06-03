@@ -32,11 +32,6 @@ class Transaction extends Model
         return $this->belongsTo('App\Client');
     }
 
-    public function transfer()
-    {
-        return $this->belongsTo('App\Transfer');
-    }
-
     public function scopeFindByPaymentMethodId($query, $id)
     {
         return $query->where('payment_method_id', $id);

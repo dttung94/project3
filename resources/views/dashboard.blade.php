@@ -1,7 +1,7 @@
-@extends('layouts.app', ['pageSlug' => 'Bảng thống kê', 'page' => 'Bảng thống kê', 'section' => ''])
-
+@extends('layouts.app', ['pageSlug' => 'Bảng thống kê', 'page' => 'HOME', 'section' => ''])
+@if( auth()->user()->role=='1'|| auth()->user()->role=='2')
 @section('content')
-    @if(auth()->user()->role=='2' || auth()->user()->role=='3')
+
     <div class="row">
         <div class="col-12">
             <div class="card card-chart">
@@ -51,7 +51,7 @@
         <div class="col-lg-4">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-category">Doanh thu tháng trước</h5>
+                    <h5 class="card-category">Tiền thu hàng tháng</h5>
                     <h3 class="card-title"><i class="tim-icons icon-money-coins text-primary"></i>{{ format_money($semesterincomes) }}</h3>
                 </div>
                 <div class="card-body">
@@ -64,7 +64,7 @@
         <div class="col-lg-4">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-category">Số dư hàng tháng</h5>
+                    <h5 class="card-category">Tiền lãi tháng này</h5>
                     <h3 class="card-title"><i class="tim-icons icon-bank text-info"></i> {{ format_money($monthlybalance) }}</h3>
                 </div>
                 <div class="card-body">
@@ -77,7 +77,7 @@
         <div class="col-lg-4">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-category">Chi trả hàng tháng</h5>
+                    <h5 class="card-category">Tiền chi hàng tháng</h5>
                     <h3 class="card-title"><i class="tim-icons icon-paper text-success"></i> {{ format_money($semesterexpenses) }}</h3>
                 </div>
                 <div class="card-body">
@@ -246,7 +246,7 @@
             </div>
         </div>
     </div>
-    @endif
+
 @endsection
 
 @push('js')
@@ -278,3 +278,69 @@
     </script>
 
 @endpush
+@endif
+
+@if(auth()->user()->role=='3')
+
+@section('content')
+    @include('alerts.success')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="card-title">Đơn bán</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="">
+                        <table class="table">
+                            <thead>
+                            <th>Ngày</th>
+                            <th>Khách khàng</th>
+                            <th>Người xử lý</th>
+                            <th>Số loại sản phẩm</th>
+                            <th>Tổng số sản phẩm</th>
+                            <th>Tổng số tiền</th>
+                            <th>Status</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            @foreach ($sales as $sale)
+                                <tr>
+                                    <td>{{ date('d-m-y', strtotime($sale->created_at)) }}</td>
+                                    <td><a href="{{ route('clients.show', $sale->client) }}">{{ $sale->client->name }}<br>{{ $sale->client->document_type }}-{{ $sale->client->document_id }}</a></td>
+                                    <td>{{ $sale->user->name }}</td>
+                                    <td>{{ $sale->products->count() }}</td>
+                                    <td>{{ $sale->products->sum('qty') }}</td>
+                                    <td>{{ format_money($sale->transactions->sum('amount')) }}</td>
+                                    <td>
+                                        @if (!$sale->finalized_at)
+                                            <span class="text-danger">To Finalize</span>
+                                        @else
+                                            <span class="text-success">Finalized</span>
+                                        @endif
+                                    </td>
+                                    <td class="td-actions text-right">
+                                            <a href="{{ route('sales.show', ['sale' => $sale]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="View Sale">
+                                                <i class="tim-icons icon-zoom-split"></i>
+                                            </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer py-4">
+                    <nav class="d-flex justify-content-end" aria-label="...">
+                        {{ $sales->links() }}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@endif

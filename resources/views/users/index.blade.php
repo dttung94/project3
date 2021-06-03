@@ -14,6 +14,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <form action="{{route('users.index')}}" method="get">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Tìm kiếm user.."/>
+                            <button class="au-btn--submit" type="submit">
+                                <i class="tim-icons icon-zoom-split"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="card-body">
                     @include('alerts.success')
 
@@ -34,12 +47,10 @@
                                         </td>
                                         <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
                                         @if ($user->role=='1')
-                                            <td>{{__('Admin')}}</td>
-                                        @elseif($user->role=='2')
                                             <td>{{__('Manager')}}</td>
-                                        @elseif($user->role=='3')
+                                        @elseif($user->role=='2')
                                             <td>{{__('Accounting Staff')}}</td>
-                                        @elseif($user->role=='4')
+                                        @elseif($user->role=='3')
                                             <td>{{__('Staff')}}</td>
                                         @endif
                                         <td class="text-right">

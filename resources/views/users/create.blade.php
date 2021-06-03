@@ -36,10 +36,9 @@
                                     <label class="form-control-label" for="input-role">{{ __('Role') }}</label>
                                     <select name="role" id="input-role" class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}" value="{{ old('role') }}" required>
 
-                                        <option value="1" >{{ __('Admin') }}</option>
-                                        <option value="2">{{ __('Manager') }}</option>
-                                        <option value="3">{{ __('Accounting Staff') }}</option>
-                                        <option value="4">{{ __('Staff') }}</option>
+                                        <option value="1">{{ __('Manager') }}</option>
+                                        <option value="2">{{ __('Accounting Staff') }}</option>
+                                        <option value="3">{{ __('Staff') }}</option>
 
 
 

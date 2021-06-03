@@ -2,24 +2,18 @@
 
 @section('content')
     <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-        {{--<div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Reset Password') }}</div>
 
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif--}}
-
+        @if (session('status'))
+            <div class="alert alert-success" role="alert" style="position: absolute ; top: -104px ; right: 0"  >
+                {{ session('status') }}
+            </div>
+        @endif
                         <form class="form" method="POST" action="{{ route('password.email') }}">
                             @csrf
                             <div class="card card-login card-white">
                                 <div class="card-header">
                                     <img src="{{ asset('assets') }}/img/card-primary.png" alt="">
-                                    <h1 class="card-title">Email Address</h1>
+                                    <h1 class="card-title">Email</h1>
                                 </div>
 
                                 <div class="input-group{{ $errors->has('email') ? ' has-danger' : '' }}">
@@ -29,6 +23,7 @@
                                         </div>
                                     </div>
                                     <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email">
+
                                     @include('alerts.feedback', ['field' => 'email'])
                                 </div>
 
@@ -45,16 +40,11 @@
 {{--                                    @enderror--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
+
+
                                 <div class="card-footer">
                                     <button type="submit" href="" class="btn btn-primary btn-lg btn-block mb-3">Send Password Reset Link</button>
                                 </div>
-                            {{--<div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Send Password Reset Link') }}
-                                    </button>
-                                </div>
-                            </div>--}}
                         </form>
                     </div>
                 </div>

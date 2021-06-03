@@ -10,11 +10,27 @@
                         <div class="col-8">
                             <h4 class="card-title">Đơn bán</h4>
                         </div>
+                        @if(auth()->user()->role == '2')
                         <div class="col-4 text-right">
                             <a href="{{ route('sales.create') }}" class="btn btn-sm btn-primary">Thêm</a>
                         </div>
+                        @endif
                     </div>
                 </div>
+
+                <div>
+                    <form action="{{route('sales.index')}}" method="get">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Tìm kiếm đơn đặt hàng..."/>
+                            <button class="au-btn--submit" type="submit">
+                                <i class="tim-icons icon-zoom-split"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+
                 <div class="card-body">
                     <div class="">
                         <table class="table">
@@ -25,7 +41,7 @@
                                 <th>Số loại sản phẩm</th>
                                 <th>Tổng số sản phẩm</th>
                                 <th>Tổng số tiền</th>
-                                <th>Status</th>
+                                <th>Trạng thái</th>
                                 <th></th>
                             </thead>
                             <tbody>
@@ -47,17 +63,17 @@
                                         <td class="td-actions text-right">
 
                                             @if (!$sale->finalized_at)
-                                                @if(auth()->user()->role=='3')
+                                                @if(auth()->user()->role=='2')
                                                 <a href="{{ route('sales.show', ['sale' => $sale]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Sale">
                                                     <i class="tim-icons icon-pencil"></i>
                                                 </a>
                                                 @endif
-                                            @else
+
+
                                                 <a href="{{ route('sales.show', ['sale' => $sale]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="View Sale">
                                                     <i class="tim-icons icon-zoom-split"></i>
                                                 </a>
-                                            @endif
-                                            @if(auth()->user()->role=='3')
+                                            @if(auth()->user()->role=='2')
                                             <form action="{{ route('sales.destroy', $sale) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
@@ -66,6 +82,7 @@
                                                 </button>
                                             </form>
                                                 @endif
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

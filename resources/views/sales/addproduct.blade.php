@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Add Product', 'pageSlug' => 'sales', 'section' => 'transactions'])
+@extends('layouts.app', ['page' => 'Thêm sản phẩm ', 'pageSlug' => 'sales', 'section' => 'transactions'])
 
 @section('content')
         <div class="row">
@@ -7,10 +7,10 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">Add Product</h3>
+                                <h3 class="mb-0">Thêm sản phẩm</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('sales.show', [$sale->id]) }}" class="btn btn-sm btn-primary">Back to List</a>
+                                <a href="{{ route('sales.show', [$sale->id]) }}" class="btn btn-sm btn-primary">Quay lại danh sách</a>
                             </div>
                         </div>
                     </div>
@@ -25,9 +25,9 @@
                                     <select name="product_id" id="input-product" class="form-select form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" required>
                                         @foreach ($products as $product)
                                             @if($product['id'] == old('product_id'))
-                                                <option value="{{$product['id']}}" selected>[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ format_money($product->price) }}</option>
+                                                <option value="{{$product['id']}}" selected>[{{ $product->category->name }}] {{ $product->name }} - Giá gốc: {{ format_money($product->price) }}</option>
                                             @else
-                                                <option value="{{$product['id']}}">[{{ $product->category->name }}] {{ $product->name }} - Base price: {{ format_money($product->price) }}</option>
+                                                <option value="{{$product['id']}}">[{{ $product->category->name }}] {{ $product->name }} - Giá gốc: {{ format_money($product->price) }}</option>
                                             @endif
                                         @endforeach
                                     </select>
@@ -35,13 +35,13 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-price">Price per Unit</label>
+                                    <label class="form-control-label" for="input-price">Giá bán mỗi sản phẩm</label>
                                     <input type="number" name="price" id="input-price" step=".01" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="0" required>
                                     @include('alerts.feedback', ['field' => 'product_id'])
                                 </div>
 
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-qty">Quantity</label>
+                                    <label class="form-control-label" for="input-qty">Số lượng</label>
                                     <input type="number" name="qty" id="input-qty" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="0" required>
                                     @include('alerts.feedback', ['field' => 'product_id'])
                                 </div>

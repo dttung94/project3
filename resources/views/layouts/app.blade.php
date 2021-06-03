@@ -7,20 +7,20 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ $page }} - {{ config('app.name') }}</title> 
+        <title>{{ $page }} - {{ config('app.name') }}</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;200;300;400;500;600&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.23.0/slimselect.min.css" rel="stylesheet">
 
         <!-- Icons -->
         <link href="{{ asset('assets') }}/css/nucleo-icons.css" rel="stylesheet" />
-        
+        <link rel="icon" href="{{ asset('assets') }}/img/logo2.png">
         <!-- CSS -->
         <link href="{{ asset('assets') }}/css/white-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('assets') }}/css/theme.css" rel="stylesheet" />
     </head>
-    <body class="white-content {{ $class ?? '' }}">
+    <body class="white-content {{ $class ?? '' }}" style="background: #0a0c0d">
         @auth()
             <div class="wrapper">
                     @include('layouts.navbars.sidebar')
@@ -38,9 +38,9 @@
             </form>
         @else
             @include('layouts.navbars.navbar')
-            <div class="wrapper wrapper-full-page">
+            <div class="wrapper wrapper-full-page" style="overflow: hidden ; height: 100vh" >
                 <div class="full-page {{ $contentClass ?? '' }}">
-                    <div class="content">
+                    <div class="content" >
                         <div class="container">
                             @yield('content')
                         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -14,10 +15,26 @@ class UserController extends Controller
      * @param  \App\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $model)
+    public function index(User $model, Request $request)
     {
-        $users = User::paginate(10);
-
+        $search = $request->search;
+        if (empty($search)) {
+            $users = User::paginate(10);
+        }
+        if ($search == 'manager') {
+            $users = User::where('role', 1)
+                ->paginate();
+        } elseif ($search == 'accounting staff') {
+            $users = User::where('role', 2)
+                ->paginate();
+        } elseif ($search == 'staff') {
+            $users = User::where('role', 3)
+                ->paginate();
+        } else {
+            $users = User::where('name', 'like', '%' . $search . '%')
+                ->orwhere('email', 'like', '%' . $search . '%')
+                ->paginate(10);
+        }
         return view('users.index', compact('users'));
     }
 

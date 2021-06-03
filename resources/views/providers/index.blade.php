@@ -7,12 +7,24 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Providers</h4>
+                            <h4 class="card-title">Nhà cung cấp</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('providers.create') }}" class="btn btn-sm btn-primary">New Provider</a>
+                            <a href="{{ route('providers.create') }}" class="btn btn-sm btn-primary">Add</a>
                         </div>
                     </div>
+                </div>
+
+                <div>
+                   <form action="{{route('providers.index')}}" method="get">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Tìm kiếm nhà cung cấp/email/phone..."/>
+                            <button class="au-btn--submit" type="submit">
+                                <i class="tim-icons icon-zoom-split"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div class="card-body">
                     @include('alerts.success')
@@ -20,10 +32,10 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th scope="col">Name</th>
-                                <th scope="col">Description</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Cung cấp</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Telephone</th>
+                                <th scope="col">Điện thoại</th>
                                 <th scope="col">Payments Made</th>
                                 <th scope="col">Total Payment</th>
                                 <th scope="col"></th>

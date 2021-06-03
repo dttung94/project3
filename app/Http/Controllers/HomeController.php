@@ -19,12 +19,13 @@ class HomeController extends Controller
     {
         $monthlyBalanceByMethod = $this->getMethodBalance()->get('monthlyBalanceByMethod');
         $monthlyBalance = $this->getMethodBalance()->get('monthlyBalance');
-
+        $sales = Sale::latest()->paginate(25);
         $anualsales = $this->getAnnualSales();
         $anualclients = $this->getAnnualClients();
         $anualproducts = $this->getAnnualProducts();
-        
+
         return view('dashboard', [
+            'sales' => $sales,
             'monthlybalance'            => $monthlyBalance,
             'monthlybalancebymethod'    => $monthlyBalanceByMethod,
             'lasttransactions'          => Transaction::latest()->limit(20)->get(),
@@ -82,11 +83,11 @@ class HomeController extends Controller
     public function getAnnualProducts()
     {
         $products = [];
-        foreach(range(1, 12) as $i) { 
+        foreach(range(1, 12) as $i) {
             $monthproducts = SoldProduct::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->sum('qty');
 
             array_push($products, $monthproducts);
-        }        
+        }
         return "[" . implode(',', $products) . "]";
     }
 

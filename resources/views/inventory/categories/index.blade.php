@@ -14,6 +14,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <form action="{{route('categories.index')}}" method="get">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Nhập danh mục muốn tìm kiếm....."/>
+                            <button class="au-btn--submit" type="submit">
+                                <i class="tim-icons icon-zoom-split"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="card-body">
                     @include('alerts.success')
 

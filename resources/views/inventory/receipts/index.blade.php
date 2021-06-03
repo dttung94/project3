@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Receipts', 'pageSlug' => 'receipts', 'section' => 'inventory'])
+@extends('layouts.app', ['page' => 'Nhập hàng', 'pageSlug' => 'receipts', 'section' => 'inventory'])
 
 @section('content')
     @include('alerts.success')
@@ -7,23 +7,25 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-8">
-                        <h4 class="card-title">Receipts</h4>
+                        <h4 class="card-title">Danh sách đơn nhập hàng</h4>
                     </div>
+                    @if(auth()->user()->role == '3')
                     <div class="col-4 text-right">
-                        <a href="{{ route('receipts.create') }}" class="btn btn-sm btn-primary">New Receipt</a>
+                        <a href="{{ route('receipts.create') }}" class="btn btn-sm btn-primary">Add</a>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="card-body">
                 <div class="">
                     <table class="table">
                         <thead>
-                            <th>Date</th>
-                            <th>Title</th>
-                            <th>Provider</th>
-                            <th>products</th>
-                            <th>Stock</th>
-                            <th>Defective Stock</th>
+                            <th>Ngày</th>
+                            <th>Tiêu đề</th>
+                            <th>Nhà cung cấp</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Sản phẩm lỗi</th>
                             <th>Status</th>
                             <th></th>
                         </thead>
