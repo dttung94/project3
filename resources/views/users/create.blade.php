@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('User Management'), 'pageSlug' => 'users', 'section' => 'users'])
+@extends('layouts.app', ['page' => __('Quản lý User'), 'pageSlug' => 'users', 'section' => 'users'])
 
 @section('content')
     <div class="container-fluid mt--7">
@@ -8,10 +8,10 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">{{ __('User Management') }}</h3>
+                                <h3 class="mb-0">{{ __('Quản lý User') }}</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('users.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                <a href="{{ route('users.index') }}" class="btn btn-sm btn-primary">{{ __('Quay lại danh sách') }}</a>
                             </div>
                         </div>
                     </div>
@@ -19,10 +19,10 @@
                         <form method="post" action="{{ route('users.store') }}" autocomplete="off">
                             @csrf
 
-                            <h6 class="heading-small text-muted mb-4">{{ __('User information') }}</h6>
+                            <h6 class="heading-small text-muted mb-4">{{ __('Thông tin User') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
+                                    <label class="form-control-label" for="input-name">{{ __('Họ tên') }}</label>
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required autofocus>
                                     @include('alerts.feedback', ['field' => 'name'])
                                 </div>
@@ -32,14 +32,13 @@
                                     @include('alerts.feedback', ['field' => 'email'])
                                 </div>
 
-                                <div class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('Phân quyền') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-role">{{ __('Role') }}</label>
                                     <select name="role" id="input-role" class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}" value="{{ old('role') }}" required>
 
-                                        <option value="1" >{{ __('Admin') }}</option>
-                                        <option value="2">{{ __('Manager') }}</option>
-                                        <option value="3">{{ __('Accounting Staff') }}</option>
-                                        <option value="4">{{ __('Staff') }}</option>
+                                        <option value="1">{{ __('Manager') }}</option>
+                                        <option value="2">{{ __('Accounting Staff') }}</option>
+                                        <option value="3">{{ __('Staff') }}</option>
 
 
 
@@ -49,17 +48,17 @@
 
 
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-password">{{ __('Password') }}</label>
+                                    <label class="form-control-label" for="input-password">{{ __('Mật khẩu') }}</label>
                                     <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" value="" required>
                                     @include('alerts.feedback', ['field' => 'password'])
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm Password') }}</label>
+                                    <label class="form-control-label" for="input-password-confirmation">{{ __('Xác nhận lại mật khẩu') }}</label>
                                     <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm Password') }}" value="" required>
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('Lưu') }}</button>
                                 </div>
                             </div>
                         </form>

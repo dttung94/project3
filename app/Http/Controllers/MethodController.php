@@ -14,10 +14,18 @@ class MethodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+        if(empty($search)) {
+            $methods = PaymentMethod::paginate(5);
+        } else {
+            $methods = PaymentMethod::where('name', 'like', '%' . $search . '%')
+                ->orwhere('description', 'like', '%' . $search . '%')
+                ->paginate(5);
+        }
         return view('methods.index', [
-            'methods' => PaymentMethod::paginate(15), 
+            'methods' => $methods,
             'month' => Carbon::now()->month
         ]);
     }
@@ -117,7 +125,7 @@ class MethodController extends Controller
     public function destroy(PaymentMethod $method)
     {
         $method->delete();
-        
+
         return back()->withStatus('Payment method successfully removed.');
     }
 }

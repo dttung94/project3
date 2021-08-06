@@ -1,22 +1,22 @@
-@extends('layouts.app', ['page' => 'Inventory Statistics', 'pageSlug' => 'istats', 'section' => 'inventory'])
+@extends('layouts.app', ['page' => 'Thống kê tồn kho', 'pageSlug' => 'istats', 'section' => 'inventory'])
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Statistics by Quantity (TOP 15)</h4>
+                    <h4 class="card-title">Thống kê theo số lượng (TOP 15)</h4>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <th>ID</th>
-                            <th>Category</th>
-                            <th>Name</th>
-                            <th>Stock</th>
-                            <th>Annual Sales</th>
-                            <th>Average Price</th>
-                            <th>Annual Income</th>
+                            <th>Danh mục</th>
+                            <th>Tên</th>
+                            <th>Tồn kho</th>
+                            <th>Doanh số hàng năm</th>
+                            <th>Giá bán bình quân</th>
+                            <th>Doanh thu hàng năm</th>
                             <th></th>
                         </thead>
                         <tbody>
@@ -46,17 +46,17 @@
         <div class="col-md-6">
             <div class="card card-tasks">
                 <div class="card-header">
-                    <h4 class="card-title">Statistics by Income (TOP 15)</h4>
+                    <h4 class="card-title">Thống kê doanh thu (TOP 15)</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-full-width table-responsive">
                         <table class="table">
                             <thead>
                                 <th>ID</th>
-                                <th>Category</th>
-                                <th>Name</th>
-                                <th>Sold</th>
-                                <th>Income</th>
+                                <th>Danh mục</th>
+                                <th>Tên</th>
+                                <th>Doanh số</th>
+                                <th>Doanh thu</th>
                             </thead>
                             <tbody>
                                 @foreach ($soldproductsbyincomes as $soldproduct)
@@ -77,17 +77,17 @@
         <div class="col-md-6">
             <div class="card card-tasks">
                 <div class="card-header">
-                    <h4 class="card-title">Statistics by Average Price (TOP 15)</h4>
+                    <h4 class="card-title">Thống kê giá bình quân sản phẩm (TOP 15)</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-full-width table-responsive">
                         <table class="table">
                             <thead>
                                 <th>ID</th>
-                                <th>Category</th>
-                                <th>Name</th>
-                                <th>Sold</th>
-                                <th>Average Price</th>
+                                <th>Danh mục</th>
+                                <th>Tên</th>
+                                <th>Doanh số</th>
+                                <th>Giá bán bình quân</th>
                             </thead>
                             <tbody>
                                 @foreach ($soldproductsbyavgprice as $soldproduct)

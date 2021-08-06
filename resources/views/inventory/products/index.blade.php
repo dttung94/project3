@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'List of Products', 'pageSlug' => 'products', 'section' => 'inventory'])
+@extends('layouts.app', ['page' => 'Danh sách sản phẩm', 'pageSlug' => 'products', 'section' => 'inventory'])
 
 @section('content')
     <div class="row">
@@ -10,50 +10,70 @@
                             <h4 class="card-title">Products</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">New product</a>
+                            <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">Add</a>
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <form action="{{route('products.index')}}" method="get">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Nhập sản phẩm muốn tìm kiếm...."/>
+                            <button class="au-btn--submit" type="submit">
+                                <i class="tim-icons icon-zoom-split"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="card-body">
                     @include('alerts.success')
 
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th scope="col">Category</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Base Price</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Faulty</th>
-                                <th scope="col">Total Sold</th>
-                                <th scope="col"></th>
+                            <th scope="col">Sản phẩm</th>
+                            <th scope="col">Danh mục</th>
+                            <th scope="col">Giá gốc</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Lỗi</th>
+                            <th scope="col">Tổng đã xuất</th>
+                            <th scope="col"></th>
                             </thead>
                             <tbody>
-                                @foreach ($products as $product)
-                                    <tr>
-                                        <td><a href="{{ route('categories.show', $product->category) }}">{{ $product->category->name }}</a></td>
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ format_money($product->price) }}</td>
-                                        <td>{{ $product->stock }}</td>
-                                        <td>{{ $product->stock_defective }}</td>
-                                        <td>{{ $product->solds->sum('qty') }}</td>
-                                        <td class="td-actions text-right">
-                                            <a href="{{ route('products.show', $product) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
-                                                <i class="tim-icons icon-zoom-split"></i>
-                                            </a>
-                                            <a href="{{ route('products.edit', $product) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Product">
-                                                <i class="tim-icons icon-pencil"></i>
-                                            </a>
-                                            <form action="{{ route('products.destroy', $product) }}" method="post" class="d-inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete Product" onclick="confirm('Are you sure you want to remove this product? The records that contain it will continue to exist.') ? this.parentElement.submit() : ''">
-                                                    <i class="tim-icons icon-simple-remove"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td>{{ $product->name }}</td>
+                                    <td>
+                                        <a href="{{ route('categories.show', $product->category) }}">{{ $product->category->name }}</a>
+                                    </td>
+                                    <td>{{ format_money($product->price) }}</td>
+                                    <td>{{ $product->stock }}</td>
+                                    <td>{{ $product->stock_defective }}</td>
+                                    <td>{{ $product->solds->sum('qty') }}</td>
+                                    <td class="td-actions text-right">
+                                        <a href="{{ route('products.show', $product) }}" class="btn btn-link"
+                                           data-toggle="tooltip" data-placement="bottom" title="More Details">
+                                            <i class="tim-icons icon-zoom-split"></i>
+                                        </a>
+                                        <a href="{{ route('products.edit', $product) }}" class="btn btn-link"
+                                           data-toggle="tooltip" data-placement="bottom" title="Edit Product">
+                                            <i class="tim-icons icon-pencil"></i>
+                                        </a>
+                                        <form action="{{ route('products.destroy', $product) }}" method="post"
+                                              class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="button" class="btn btn-link" data-toggle="tooltip"
+                                                    data-placement="bottom" title="Delete Product"
+                                                    onclick="confirm('Are you sure you want to remove this product? The records that contain it will continue to exist.') ? this.parentElement.submit() : ''">
+                                                <i class="tim-icons icon-simple-remove"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

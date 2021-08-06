@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\ProductCategory;
 use App\Http\Requests\ProductCategoryRequest;
+use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
 {
@@ -13,10 +14,15 @@ class ProductCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProductCategory $model)
+    public function index(Request $request)
     {
-        $categories = ProductCategory::paginate(25);
-
+        $search = $request->search;
+        if(empty($search)) {
+            $categories = ProductCategory::paginate(5);
+        } else {
+            $categories = ProductCategory::where('name', 'like', '%' . $search . '%')
+                ->paginate(5);
+        }
         return view('inventory.categories.index', compact('categories'));
     }
 

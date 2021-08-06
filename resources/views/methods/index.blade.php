@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Methods', 'pageSlug' => 'methods', 'section' => 'methods'])
+@extends('layouts.app', ['page' => 'Phương thức thanh toán', 'pageSlug' => 'methods', 'section' => 'methods'])
 
 @section('content')
     @include('alerts.success')
@@ -8,22 +8,36 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Bank Accounts / Payment Methods</h4>
+                            <h4 class="card-title">Thanh toán</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('methods.create') }}" class="btn btn-sm btn-primary">New Method</a>
+                            <a href="{{ route('methods.create') }}" class="btn btn-sm btn-primary">Thêm phương thức thanh toán</a>
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <form action="{{route('methods.index')}}" method="get">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Tìm kiếm PTTT..."/>
+                            <button class="au-btn--submit" type="submit">
+                                <i class="tim-icons icon-zoom-split"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+
                 <div class="card-body">
-                    
+
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th scope="col">Method</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Monthly Transactions</th>
-                                <th scope="col">Monthly Balance</th>
+                                <th scope="col">Phương thức</th>
+                                <th scope="col">Mô tả</th>
+                                <th scope="col">Giao dịch hàng tháng</th>
+                                <th scope="col">Giao dịch gần nhất</th>
                                 <th scope="col"></th>
                             </thead>
                             <tbody>

@@ -1,21 +1,28 @@
-@extends('layouts.app', ['page' => 'Category Information', 'pageSlug' => 'categories', 'section' => 'inventory'])
+@extends('layouts.app', ['page' => 'Thông tin danh mục', 'pageSlug' => 'categories', 'section' => 'inventory'])
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Category Information</h4>
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Chỉnh sửa</h3>
+                        </div>
+                        <div class="col-4 text-right">
+                            <a href="{{ route('categories.index') }}" class="btn btn-sm btn-primary">Quay lại danh sách</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>products</th>
-                            <th>Stocks</th>
-                            <th>Stocks Faulty</th>
-                            <th>Average Price</th>
+                            <th>Danh mục</th>
+                            <th>Tổng số loại sản phẩm</th>
+                            <th>Tồn kho</th>
+                            <th>Số sản phẩm lỗi</th>
+                            <th>Giá trung bình</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -24,7 +31,7 @@
                                 <td>{{ $category->products->count() }}</td>
                                 <td>{{ $category->products->sum('stock') }}</td>
                                 <td>{{ $category->products->sum('stock_defective') }}</td>
-                                <td>${{ round($category->products->avg('price'), 2) }}</td>
+                                <td>{{ format_money(round($category->products->avg('price'), 2)) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -36,18 +43,18 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">products: {{ $products->count() }}</h4>
+                    <h4 class="card-title">Tổng số loại sản phẩm: {{ $products->count() }}</h4>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Stock</th>
-                            <th>Defective Stock</th>
-                            <th>Base price</th>
-                            <th>Average Price</th>
-                            <th>Total sales</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Tồn kho</th>
+                            <th>Số sản phẩm lỗi</th>
+                            <th>Giá gốc</th>
+                            <th>Giá bán bình quân</th>
+                            <th>Tổng đã bán</th>
                             <th>Income Produced</th>
                             <th></th>
                         </thead>

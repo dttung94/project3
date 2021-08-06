@@ -32,6 +32,10 @@ Route::group(['middleware' => 'auth'], function () {
         'transactions/transfer' => 'TransferController',
         'methods' => 'MethodController',
     ]);
+//    Route::get('inventory/products', ['as' => 'products.index','uses'=>'ProductController@index']);
+//    Route::post('inventory/products/create', ['as' => 'products.create','uses'=>'ProductController@store']);
+//    Route::put('inventory/products/{id}/edit', ['as' => 'products.edit','uses'=>'ProductController@edit']);
+//    Route::get('inventory/products/{id}', ['as' => 'products.show','uses'=>'ProductController@show']);
 
     Route::resource('transactions', 'TransactionController')->except(['create', 'show']);
     Route::get('transactions/stats/{year?}/{month?}/{day?}', ['as' => 'transactions.stats', 'uses' => 'TransactionController@stats']);

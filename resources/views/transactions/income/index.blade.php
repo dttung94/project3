@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Income', 'pageSlug' => 'incomes', 'section' => 'transactions'])
+@extends('layouts.app', ['page' => 'Phí thu vào', 'pageSlug' => 'incomes', 'section' => 'transactions'])
 
 @section('content')
     <div class="row">
@@ -7,11 +7,13 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Income</h4>
+                            <h4 class="card-title">Phí thu vào</h4>
                         </div>
+                        @if (auth()->user()->role == 2)
                         <div class="col-4 text-right">
-                            <a href="{{ route('transactions.create', ['type' => 'income']) }}" class="btn btn-sm btn-primary">Register Income</a>
+                            <a href="{{ route('transactions.create', ['type' => 'income']) }}" class="btn btn-sm btn-primary">Thêm phí thu vào</a>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -20,11 +22,12 @@
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th scope="col">Date</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Method</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Reference</th>
+                                <th scope="col">Ngày</th>
+                                <th scope="col">Tiêu đề</th>
+                                <th scope="col">Phương thức giao dịch</th>
+                                <th scope="col">Số tiền</th>
+                                <th scope="col">Liên hệ</th>
+
                                 <th scope="col"></th>
                             </thead>
                             <tbody>
@@ -36,6 +39,7 @@
                                         <td>{{ format_money($transaction->amount) }}</td>
                                         <td>{{ $transaction->reference }}</td>
                                         <td></td>
+                                        @if (auth()->user()->role == 2)
                                         <td class="td-actions text-right">
                                             @if ($transaction->sale_id)
                                                 <a href="{{ route('sales.show', $transaction->sale_id) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="More Details">
@@ -54,6 +58,7 @@
                                                 </form>
                                             @endif
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

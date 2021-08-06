@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Closure;
 use Illuminate\Http\Request;
-class CheckAdmin extends Middleware
+class CheckStaff extends Middleware
 {
 
     public function handle($request, Closure $next, $guard = null)

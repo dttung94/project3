@@ -21,9 +21,8 @@ class CreateTransactionsTableMigration extends Migration
             $table->unsignedBigInteger('client_id')->nullable();
             $table->unsignedBigInteger('sale_id')->nullable();
             $table->unsignedBigInteger('provider_id')->nullable();
-            $table->unsignedBigInteger('transfer_id')->nullable();
             $table->unsignedBigInteger('payment_method_id');
-            $table->decimal('amount', 10, 2);
+            $table->decimal('amount', 18, 0);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('payment_method_id')->references('id')->on('payment_methods');
@@ -31,7 +30,6 @@ class CreateTransactionsTableMigration extends Migration
             $table->foreign('sale_id')->references('id')->on('sales')->onDelete('cascade');
             $table->foreign('provider_id')->references('id')->on('providers');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('transfer_id')->references('id')->on('transfers')->onDelete('cascade');
         });
     }
 

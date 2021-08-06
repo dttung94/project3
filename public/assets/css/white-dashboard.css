@@ -4433,6 +4433,7 @@ input[type="button"].btn-block {
   flex-basis: 100%;
   flex-grow: 1;
   align-items: center;
+    margin-top: -55px;
 }
 
 .navbar-toggler {
@@ -10624,7 +10625,8 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 .navbar .btn-group-sm.navbar-nav>a.btn.btn-icon .fas,
 .navbar .navbar-nav>a.btn.btn-icon.btn-sm .tim-icons,
 .navbar .btn-group-sm.navbar-nav>a.btn.btn-icon .tim-icons {
-  font-size: 0.6875rem;
+  /*font-size: 0.6875rem;*/
+    color: #cc2127;
 }
 
 .btn.btn-icon.btn-lg,
@@ -13484,7 +13486,7 @@ img {
   padding-bottom: .3125rem;
   color: #ffffff;
   margin-left: 17px;
-  margin-top: 3px;
+  margin-top: -40px;
   text-transform: uppercase;
   font-size: 1rem;
 }
@@ -17114,7 +17116,8 @@ Copyright (c) 2015 Daniel Eden
 
 .white-content .card:not(.card-white) .card-header .card-title,
 .white-content .card:not(.card-white) .card-body .card-title {
-  color: #1d253b;
+  color: #0a0c0d;
+
 }
 
 .white-content .card:not(.card-white) .card-body .card-category,
@@ -17763,6 +17766,15 @@ Copyright (c) 2015 Daniel Eden
   padding-top: 150px;
 }
 
+
+
+.full-page>.content {
+    background-image: url("https://softbuzz.net/wp-content/uploads/2019/10/background-don-gian-dep-softbuzz-14-1024x576.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background: #955d5b;*/
+}
+
 .full-page .footer {
   position: absolute;
   width: 100%;
@@ -17780,12 +17792,16 @@ Copyright (c) 2015 Daniel Eden
   color: #ffffff;
 }
 
+h1 .card-title{
+    font-family: 'Nunito', sans-serif;
+}
+
 .login-page .card-login .card-header .card-title {
   position: relative;
   font-size: 5em;
   font-weight: 900;
   color: #222a42;
-  text-transform: lowercase;
+  text-transform: capitalize;
   margin-left: -5px;
   z-index: 1;
 }
@@ -17903,6 +17919,7 @@ Copyright (c) 2015 Daniel Eden
 .white-content .full-page ul li,
 .white-content .full-page pre {
   color: #1d253b;
+    user-select: none;
 }
 
 .white-content .full-page .description {
@@ -17947,10 +17964,44 @@ Copyright (c) 2015 Daniel Eden
 
 .white-content.bd-docs .bd-example {
   background: linear-gradient(#f5f6fa, #f5f6fa);
-}  
+}
 
 .breadcrumb-item.active {
   color: rgba(34, 42, 66, 0.7);
 }
+.form-header {
+    width: 400px;
+    border: 1px solid #ccc;
+    margin-left: 16px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.au-input {
+    outline: none;
+    border: none;
+    margin-left: 5px;
+    padding: 5px;
+    width: 350px;
+}
 
+.au-btn--submit {
+    outline: none;
+    cursor: pointer;
+    background: #fff;
+    border: none;
+    display: block;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 1px solid #ccc;
+    padding: 0 15px
+}
+.au-btn--submit:hover {
+    color: #fff;
+    background: #4c60d8;
+}
+
+th,td {
+    text-align: center;
+}
 /*# sourceMappingURL=dashboard-free.css.map */

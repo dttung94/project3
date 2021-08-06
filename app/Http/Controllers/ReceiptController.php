@@ -20,7 +20,7 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $receipts = Receipt::paginate(25);
+        $receipts = Receipt::paginate(4);
 
         return view('inventory.receipts.index', compact('receipts'));
     }
@@ -50,7 +50,7 @@ class ReceiptController extends Controller
 
         return redirect()
             ->route('receipts.show', $receipt)
-            ->withStatus('Receipt registered successfully, you can start adding the products belonging to it.');
+            ->withStatus('Khởi tạo biên nhận thành công, bạn có thể thêm các hàng hóa vào bên dưới');
     }
 
     /**
@@ -76,7 +76,7 @@ class ReceiptController extends Controller
 
         return redirect()
             ->route('receipts.index')
-            ->withStatus('Receipt successfully removed.');
+            ->withStatus('Xóa biên nhận thành công');
     }
 
     /**
@@ -96,7 +96,7 @@ class ReceiptController extends Controller
             $receivedproduct->product->save();
         }
 
-        return back()->withStatus('Receipt successfully completed.');
+        return back()->withStatus('Đã nhập kho và xác nhận biên nhận');
     }
 
     /**
@@ -125,7 +125,7 @@ class ReceiptController extends Controller
 
         return redirect()
             ->route('receipts.show', $receipt)
-            ->withStatus('Product added successfully.');
+            ->withStatus('Thêm hàng hóa thành công');
     }
 
     /**
@@ -154,7 +154,7 @@ class ReceiptController extends Controller
 
         return redirect()
             ->route('receipts.show', $receipt)
-            ->withStatus('Product edited successfully.');
+            ->withStatus('Cập nhật thành công');
     }
 
     /**
@@ -169,6 +169,6 @@ class ReceiptController extends Controller
 
         return redirect()
             ->route('receipts.show', $receipt)
-            ->withStatus('Product removed successfully.');
+            ->withStatus('Xóa thành công');
     }
 }

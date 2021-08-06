@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Manage Receipt', 'pageSlug' => 'receipts', 'section' => 'inventory'])
+@extends('layouts.app', ['page' => 'Đơn nhận hàng', 'pageSlug' => 'receipts', 'section' => 'inventory'])
 
 
 @section('content')
@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Receipt Summary</h4>
+                            <h4 class="card-title">Tóm tắt</h4>
                         </div>
                         @if (!$receipt->finalized_at)
                             <div class="col-4 text-right">
@@ -19,13 +19,13 @@
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-sm btn-primary">
-                                            Delete Receipt
+                                            Delete
                                         </button>
                                     </form>
                                 @else
-                                    @if (auth()->user()->role=='manager')
-                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('ATTENTION: At the end of this receipt you will not be able to load more products in it.') ? window.location.replace('{{ route('receipts.finalize', $receipt) }}') : ''">
-                                        Finalize Receipt
+                                    @if (auth()->user()->role=='1')
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirm('CHÚ Ý: Bạn chốt và kết thúc biên nhận này chứ ?') ? window.location.replace('{{ route('receipts.finalize', $receipt) }}') : ''">
+                                        Finalize
                                     </button>
                                     @endif
                                 @endif
@@ -37,14 +37,14 @@
                     <table class="table">
                         <thead>
                             <th>ID</th>
-                            <th>Date</th>
-                            <th>Title</th>
-                            <th>User</th>
-                            <th>Provider</th>
-                            <th>products</th>
-                            <th>Stock</th>
-                            <th>Defective Stock</th>
-                            <th>Status</th>
+                            <th>Ngày</th>
+                            <th>Tiêu đề</th>
+                            <th>Nhân viên</th>
+                            <th>Nhà cung cấp</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Lỗi</th>
+                            <th>Trạng thái</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -79,7 +79,7 @@
                         <div class="col-8">
                             <h4 class="card-title">products: {{ $receipt->products->count() }}</h4>
                         </div>
-                        @if (!$receipt->finalized_at)
+                        @if (!$receipt->finalized_at && auth()->user()->role == '3')
                             <div class="col-4 text-right">
                                 <a href="{{ route('receipts.product.add', ['receipt' => $receipt]) }}" class="btn btn-sm btn-primary">Add</a>
                             </div>
@@ -91,9 +91,10 @@
                         <thead>
                             <th>Category</th>
                             <th>Product</th>
-                            <th>Stock</th>
-                            <th>Defective Stock</th>
-                            <th>Total Stock</th>
+                            <th>Vị trí</th>
+                            <th>Số lượng</th>
+                            <th>Lỗi</th>
+                            <th>Tổng</th>
                             <th></th>
                         </thead>
                         <tbody>
@@ -101,6 +102,7 @@
                                 <tr>
                                     <td><a href="{{ route('categories.show', $received_product->product->category) }}">{{ $received_product->product->category->name }}</a></td>
                                     <td><a href="{{ route('products.show', $received_product->product) }}">{{ $received_product->product->name }}</a></td>
+                                    <td>{{ $received_product->position}}</td>
                                     <td>{{ $received_product->stock }}</td>
                                     <td>{{ $received_product->stock_defective }}</td>
                                     <td>{{ $received_product->stock + $received_product->stock_defective }}</td>

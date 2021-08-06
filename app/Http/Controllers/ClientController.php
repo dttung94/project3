@@ -16,10 +16,18 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clients = Client::paginate(25);
-
+        $search = $request->search;
+        if(empty($search)) {
+            $clients = Client::paginate(5);
+        } else {
+            $clients = Client::where('name', 'like', '%' . $search . '%')
+                ->orwhere('email', 'like', '%' . $search . '%')
+                ->orwhere('phone','like', '%' . $search . '%')
+                ->orwhere('document_type','like', '%' . $search . '%')
+                ->paginate(5);
+        }
         return view('clients.index', compact('clients'));
     }
 
@@ -42,7 +50,7 @@ class ClientController extends Controller
     public function store(ClientRequest $request, Client $client)
     {
         $client->create($request->all());
-        
+
         return redirect()->route('clients.index')->withStatus('Successfully registered customer.');
     }
 

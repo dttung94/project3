@@ -7,13 +7,26 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Categories</h4>
+                            <h4 class="card-title">Danh sách </h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary">New Category</a>
+                            <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary">Thêm danh mục</a>
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <form action="{{route('categories.index')}}" method="get">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Nhập danh mục muốn tìm kiếm....."/>
+                            <button class="au-btn--submit" type="submit">
+                                <i class="tim-icons icon-zoom-split"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="card-body">
                     @include('alerts.success')
 
@@ -21,10 +34,10 @@
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
                                 <th scope="col">Tên</th>
-                                <th scope="col">Sản phẩm</th>
-                                <th scope="col">Total Stock</th>
-                                <th scope="col">Defective Stock</th>
-                                <th scope="col">Average Price of Product</th>
+                                <th scope="col">Tổng số loại sản phẩm</th>
+                                <th scope="col">Tồn kho</th>
+                                <th scope="col">Sản phẩm lỗi</th>
+                                <th scope="col">Giá trung bình</th>
                                 <th scope="col"></th>
                             </thead>
                             <tbody>

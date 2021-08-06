@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('User Management'), 'pageSlug' => 'users', 'section' => 'users'])
+@extends('layouts.app', ['page' => __('Quản lý User'), 'pageSlug' => 'users', 'section' => 'users'])
 
 @section('content')
     <div class="row">
@@ -10,20 +10,33 @@
                             <h4 class="card-title">{{ __('Users') }}</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
+                            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">{{ __('Thêm user') }}</a>
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <form action="{{route('users.index')}}" method="get">
+                        <div class="form-header">
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Tìm kiếm user.."/>
+                            <button class="au-btn--submit" type="submit">
+                                <i class="tim-icons icon-zoom-split"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="card-body">
                     @include('alerts.success')
 
                     <div class="">
                         <table class="table tablesorter " id="">
                             <thead class=" text-primary">
-                                <th scope="col">{{ __('Name') }}</th>
+                                <th scope="col">{{ __('Họ tên') }}</th>
                                 <th scope="col">{{ __('Email') }}</th>
-                                <th scope="col">{{ __('Creation Date') }}</th>
-                                <th scope="col">{{ __('Role') }}</th>
+                                <th scope="col">{{ __('Ngày khởi tạo') }}</th>
+                                <th scope="col">{{ __('Quyền') }}</th>
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
@@ -34,9 +47,9 @@
                                         </td>
                                         <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
                                         @if ($user->role=='1')
-                                            <td>{{__('Admin')}}</td>
-                                        @elseif($user->role=='2')
                                             <td>{{__('Manager')}}</td>
+                                        @elseif($user->role=='2')
+                                            <td>{{__('Accounting Staff')}}</td>
                                         @elseif($user->role=='3')
                                             <td>{{__('Staff')}}</td>
                                         @endif

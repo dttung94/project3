@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         //
         $faker = Faker::create();
 
-        $user = DB::table('users')->insert([
+        $user1 = DB::table('users')->insert([
                 'id' => 1,
                 'email' => 'admin@gmail.com',
                 'name' => 'Admin',
@@ -27,21 +27,21 @@ class UserSeeder extends Seeder
             ]
         );
 
-        $user = DB::table('users')->insert([
+        $user2 = DB::table('users')->insert([
                 'id' => 2,
                 'email' => 'manager@gmail.com',
                 'name' => 'Manager',
-                'role'=>'2',
+                'role'=>'1',
                 'password'=>Hash::make('12345678'),
                 'created_at' => $faker->datetimeBetween('-5 months'),
             ]
         );
 
-        $user = DB::table('users')->insert([
+        $user3 = DB::table('users')->insert([
                 'id' => 3,
                 'email' => 'staff1@gmail.com',
                 'name' => 'staff1',
-                'role'=>'4',
+                'role'=>'3',
                 'password'=>Hash::make('12345678'),
                 'created_at' => $faker->datetimeBetween('-5 months'),
 
@@ -49,11 +49,11 @@ class UserSeeder extends Seeder
         );
 
 
-        $user = DB::table('users')->insert([
+        $user4 = DB::table('users')->insert([
                 'id' => 4,
                 'email' => 'lghp1998@gmail.com',
                 'name' => 'AccountingStaff',
-                'role'=>'3',
+                'role'=>'2',
                 'password'=>Hash::make('12345678'),
                 'created_at' => $faker->datetimeBetween('-5 months'),
             ]

@@ -8,7 +8,7 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="#">{{ $page ?? '' }}</a>
+            <img style="width: 150px; height: 100px; margin-top: -20px;" src="{{ asset('assets') }}/img/logo3.png" alt="">
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -19,7 +19,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link text-primary">
-                        <i class="tim-icons icon-minimal-left"></i> Home
+                        <i class="tim-icons icon-minimal-left"></i> HOME
                     </a>
                 </li>
                 {{--<li class="nav-item ">

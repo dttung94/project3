@@ -5,19 +5,19 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Provider Information</h4>
+                    <h4 class="card-title">Thông tin nhà cung cấp</h4>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
+                            <th>Tên</th>
+                            <th>Mô tả</th>
                             <th>Email</th>
                             <th>Telephone</th>
-                            <th>Payment information</th>
-                            <th>Payments Made</th>
-                            <th>Total Payment</th>
+                            <th>Thông tin thanh toán</th>
+                            <th>Thanh toán đã thực hiện</th>
+                            <th>Tổng GD</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -40,23 +40,25 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Latest Payments</h4>
+                    <h4 class="card-title">Lần thanh toán trước</h4>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                            <th>Date</th>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Method</th>
-                            <th>Amount</th>
-                            <th>Reference</th>
+                        <th>ID</th>
+                            <th>Ngày</th>
+
+                            <th>Tiêu đề</th>
+                            <th>PTTT</th>
+                            <th>Tài chính</th>
+                            <th>Mô tả</th>
                         </thead>
                         <tbody>
                             @foreach ($transactions as $transaction)
                                 <tr>
-                                    <td>{{ date('d-m-y', strtotime($transaction->created_at)) }}</td>
                                     <td>{{ $transaction->id }}</td>
+                                    <td>{{ date('d-m-y', strtotime($transaction->created_at)) }}</td>
+
                                     <td>{{ $transaction->title }}</td>
                                     <td><a href="{{ route('methods.show', $transaction->method) }}">{{ $transaction->method->name }}</a></td>
                                     <td>{{ format_money($transaction->amount) }}</td>
@@ -73,25 +75,27 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Latest Receipts</h4>
+                    <h4 class="card-title">Lần nhập hàng trước</h4>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                            <th>Date</th>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>products</th>
-                            <th>Stock</th>
-                            <th>Defective Stock</th>
-                            <th>Total Stock</th>
+                        <th>ID</th>
+                            <th>Ngày</th>
+
+                            <th>Tiêu đề</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Lỗi</th>
+                            <th>Tổng số</th>
                             <th></th>
                         </thead>
                         <tbody>
                             @foreach ($receipts as $receipt)
                                 <tr>
-                                    <td>{{ date('d-m-y', strtotime($receipt->created_at)) }}</td>
                                     <td><a href="{{ route('receipts.show', $receipt) }}">{{ $receipt->id }}</a></td>
+                                    <td>{{ date('d-m-y', strtotime($receipt->created_at)) }}</td>
+
                                     <td>{{ $receipt->title }}</td>
                                     <td>{{ $receipt->products->count() }}</td>
                                     <td>{{ $receipt->products->sum('stock') }}</td>
